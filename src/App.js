@@ -22,7 +22,7 @@ function App() {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans&display=swap');
     </style> 
     <CreateTransaction/>
-    <ViewTransactions transactions={transactions}/>
+    {/* <ViewTransactions transactions={transactions}/> */}
     </>
   );
 }
