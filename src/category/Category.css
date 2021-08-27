@@ -1,0 +1,27 @@
+.category{
+    display:inline-flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.sub-category{
+    display:inline-flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.category:hover, .sub-category:hover{
+    background-color: teal;
+}
