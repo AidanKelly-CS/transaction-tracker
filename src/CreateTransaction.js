@@ -50,6 +50,7 @@ export default function CreateTransaction() {
     }
   
     function createTransaction(){
+      setTotal("0");
       console.log(`transaction created with total of £${total}`);
     }
     
@@ -81,6 +82,7 @@ export default function CreateTransaction() {
       </div>
 
       <p>{currency} {total}</p>
+
       <div className="flex-container">
       <Button value={1} updateTotal={updateTotal}/>
       <Button value={2} updateTotal={updateTotal}/>
