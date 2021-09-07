@@ -56,7 +56,7 @@ export default function CreateTransaction() {
     
     function setCategory(category){
       if(category in categories){
-        setCategories({...categories, [category]:!categories.category});
+        setCategories({...categories, [category]:!categories[category]});
       }
     }
 

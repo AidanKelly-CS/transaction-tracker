@@ -1,6 +1,7 @@
+import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 import CreateTransaction from './CreateTransaction';
-import ViewTransactions from './ViewTransactions';
 
 function App() {
   const transactions = [
