@@ -21,8 +21,3 @@
 .selected{
     background-color: teal;
 }
-
-
-.category:hover, .sub-category:hover{
-    background-color: teal;
-}

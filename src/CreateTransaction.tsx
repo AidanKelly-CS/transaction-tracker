@@ -13,6 +13,7 @@ export default function CreateTransaction() {
       "food": false,
       "transport":false,
       "entertainment":false,
+
       "cinema": false,
       "car":false,
       "date":false,
@@ -67,18 +68,18 @@ export default function CreateTransaction() {
     return (
       <>
       <div className="flex-container">
-      <Category icon={faHotdog} color={"orange"} type={"main"} onClick={()=>setCategory("food")}/>
-      <Category icon={faRoute} color={"red"} type={"main"} onClick={()=>setCategory("transport")}/>
-      <Category icon={faGamepad} color={"blue"} type={"main"} onClick={()=>setCategory("entertainment")}/>
+      <Category icon={faHotdog} color={"orange"} main={true} selected={categories.food} onClick={()=>setCategory("food")}/>
+      <Category icon={faRoute} color={"red"} main={true} selected={categories.transport} onClick={()=>setCategory("transport")}/>
+      <Category icon={faGamepad} color={"blue"} main={true} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
       </div>
 
       <div className="flex-container">
-      <Category icon={faCar} color={"red"} type={"sub"} onClick={()=>setCategory("car")}/>
-      <Category icon={faFilm} color={"red"} type={"sub"} onClick={()=>setCategory("cinema")} />
-      <Category icon={faHeart} color={"red"} type={"sub"} onClick={()=>setCategory("date")}/>
-      <Category icon={faGlassMartiniAlt} color={"red"} type={"sub"} onClick={()=>setCategory("drinks")}/>
-      <Category icon={faPlaneDeparture} color={"red"} type={"sub"} onClick={()=>setCategory("holiday")}/>
-      <Category icon={faGift} color={"red"} type={"sub"} onClick={()=>setCategory("gift")}/>
+      <Category icon={faFilm} color={"red"} main={false} selected={categories.cinema} onClick={()=>setCategory("cinema")}/>
+      <Category icon={faCar} color={"red"} main={false} selected={categories.car} onClick={()=>setCategory("car")} />
+      <Category icon={faHeart} color={"red"} main={false} selected={categories.date} onClick={()=>setCategory("date")}/>
+      <Category icon={faGlassMartiniAlt} color={"red"} main={false} selected={categories.drinks} onClick={()=>setCategory("drinks")}/>
+      <Category icon={faPlaneDeparture} color={"red"} main={false} selected={categories.holiday} onClick={()=>setCategory("holiday")}/>
+      <Category icon={faGift} color={"red"} main={false} selected={categories.gift} onClick={()=>setCategory("gift")}/>
       </div>
 
       <p>{currency} {total}</p>
@@ -111,15 +112,15 @@ export default function CreateTransaction() {
 
       <button className="control-button" onClick={clearTransaction}>Clear</button>
   
-      <p>food: {categories.food}</p>
-      <p>transport: {categories.transport}</p>
-      <p>entertainment: {categories.entertainment}</p>
-      <p>cinema: {categories.cinema}</p>
-      <p>car: {categories.car}</p>
-      <p>date: {categories.date}</p>
-      <p>drinks: {categories.drinks}</p>
-      <p>holiday: {categories.holiday}</p>
-      <p>gift: {categories.gift}</p>
+      <p>food: {categories.food.toString()}</p>
+      <p>transport: {categories.transport.toString()}</p>
+      <p>entertainment: {categories.entertainment.toString()}</p>
+      <p>cinema: {categories.cinema.toString()}</p>
+      <p>car: {categories.car.toString()}</p>
+      <p>date: {categories.date.toString()}</p>
+      <p>drinks: {categories.drinks.toString()}</p>
+      <p>holiday: {categories.holiday.toString()}</p>
+      <p>gift: {categories.gift.toString()}</p>
       <p>total: {total}</p>
       </>
     );

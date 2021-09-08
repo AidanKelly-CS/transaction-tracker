@@ -1,25 +1,28 @@
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import classNames from 'classnames';
 import './Category.css';
 
-export default function Category({icon, color, type, onClick}) {
-    
-    const highlighted = false;
+interface Category{
+    icon: IconDefinition;
+    color:string;
+    main: boolean;
+    onClick: any;
+    selected: boolean;
+}
 
-    function createCategory(type){
-        if(type === "sub"){
-            return (
-                <div className="category sub-category">
-                    <FontAwesomeIcon icon={icon} color={color} size="1x" onClick={onClick}/>
-                </div>
-            );
-        }else{
-            return (
-                <div className="category main-category">
-                    <FontAwesomeIcon icon={icon} color={color} size="2x" onClick={onClick}/>
-                </div>
-            );
-        }
-    }
+export default function Category({icon, color, main, selected, onClick}: Category) {
     
-    return createCategory(type);
+    let classes = classNames({
+        "category":true,
+        "sub-category":!main,
+        "main-category": main,
+        "selected":selected
+    });
+
+    return (
+        <div className={classes} onClick={onClick}>
+            <FontAwesomeIcon icon={icon} color={color} size={main?"2x":"1x"} />
+        </div>
+    );
 }
