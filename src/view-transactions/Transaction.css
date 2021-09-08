@@ -1,0 +1,19 @@
+.transaction {
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.container {
+    display: grid;
+    place-items: center stretch;
+    grid-template-columns: 5rem auto auto;
+}
+
+.trans-total{
+    text-align: right;
+}
+
+
+

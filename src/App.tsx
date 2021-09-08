@@ -1,16 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CreateTransaction from './CreateTransaction';
+import CreateTransaction from './create-transaction/CreateTransaction';
+import ViewTransactions from './view-transactions/ViewTransactions';
 
 function App() {
   const transactions = [
     {
-      "category":"test",
+      "category":"food",
       "total":"£100"
     },
     {
-      "category":"test1",
+      "category":"food",
       "total":"£1001"
     }
   ]
@@ -22,8 +23,8 @@ function App() {
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans&display=swap');
     </style> 
-    <CreateTransaction/>
-    {/* <ViewTransactions transactions={transactions}/> */}
+    {/* <CreateTransaction/> */}
+    <ViewTransactions transactions={transactions}/>
     </>
   );
 }

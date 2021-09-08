@@ -1,5 +1,7 @@
 import React from 'react';
 import Transaction from './Transaction';
+import './Transaction.css';
+
 
 export default function ViewTransactions({transactions}) {
     return (

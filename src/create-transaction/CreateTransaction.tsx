@@ -3,7 +3,7 @@ import Button from './Button';
 import React, {useState,useRef, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faRoute } from '@fortawesome/free-solid-svg-icons'
-import Category from './category/Category';
+import Category from '../category/Category';
 
 
 export default function CreateTransaction() {
