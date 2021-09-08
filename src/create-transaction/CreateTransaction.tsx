@@ -1,9 +1,9 @@
 import Button from './Button';
 import React, {useState,useRef, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faPlus, faRoute } from '@fortawesome/free-solid-svg-icons'
 import Category from '../category/Category';
-
+import './Transaction.css';
 
 export default function CreateTransaction() {
     const currency = "£";
@@ -50,7 +50,7 @@ export default function CreateTransaction() {
     }
   
     function createTransaction(){
-      setTotal("0");
+      clearTransaction();
       console.log(`transaction created with total of £${total}`);
     }
     
@@ -62,55 +62,54 @@ export default function CreateTransaction() {
 
     function clearTransaction(){
       setTotal("0");
+      clearCategories();
     }
+
+    function clearCategories(){
+      const cat = {...categories};
+      Object.keys(cat).forEach(key => {
+        cat[key] = false;
+      });
+      setCategories(cat);
+    }
+
   
     return (
       <>
+
       <div className="flex-container">
-      <Category icon={faHotdog} color={"orange"} main={true} selected={categories.food} onClick={()=>setCategory("food")}/>
-      <Category icon={faRoute} color={"red"} main={true} selected={categories.transport} onClick={()=>setCategory("transport")}/>
-      <Category icon={faGamepad} color={"blue"} main={true} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
+      <Category icon={faHotdog} color={"white"} main={false} selected={categories.food} onClick={()=>setCategory("food")}/>
+      <Category icon={faRoute} color={"white"} main={false} selected={categories.transport} onClick={()=>setCategory("transport")}/>
+      <Category icon={faGamepad} color={"white"} main={false} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
+      <Category icon={faPlus} color={"white"} main={false} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
       </div>
 
-      <div className="flex-container">
-      <Category icon={faFilm} color={"red"} main={false} selected={categories.cinema} onClick={()=>setCategory("cinema")}/>
-      <Category icon={faCar} color={"red"} main={false} selected={categories.car} onClick={()=>setCategory("car")} />
-      <Category icon={faHeart} color={"red"} main={false} selected={categories.date} onClick={()=>setCategory("date")}/>
-      <Category icon={faGlassMartiniAlt} color={"red"} main={false} selected={categories.drinks} onClick={()=>setCategory("drinks")}/>
-      <Category icon={faPlaneDeparture} color={"red"} main={false} selected={categories.holiday} onClick={()=>setCategory("holiday")}/>
-      <Category icon={faGift} color={"red"} main={false} selected={categories.gift} onClick={()=>setCategory("gift")}/>
+      <p className="total">{currency} {total}</p>
+
+
+
+      <div className="control-button-container">
+        <button className="control-button" onClick={createTransaction}>Add</button>
+        <button className="control-button" onClick={clearTransaction}>Clear</button>
       </div>
 
-      <p>{currency} {total}</p>
-
-      <div className="flex-container">
-      <Button value={1} updateTotal={updateTotal}/>
-      <Button value={2} updateTotal={updateTotal}/>
-      <Button value={3} updateTotal={updateTotal}/>
-      </div>
-
-      <div className="flex-container">
-      <Button value={4} updateTotal={updateTotal}/>
-      <Button value={5} updateTotal={updateTotal}/>
-      <Button value={6} updateTotal={updateTotal}/>
+      <div className="grid-container">
+        <Button value={1} updateTotal={updateTotal}/>
+        <Button value={2} updateTotal={updateTotal}/>
+        <Button value={3} updateTotal={updateTotal}/>
+        <Button value={4} updateTotal={updateTotal}/>
+        <Button value={5} updateTotal={updateTotal}/>
+        <Button value={6} updateTotal={updateTotal}/>
+        <Button value={7} updateTotal={updateTotal}/>
+        <Button value={8} updateTotal={updateTotal}/>
+        <Button value={9} updateTotal={updateTotal}/>
+        <Button value={0} updateTotal={updateTotal}/>
+        <Button value={"."} updateTotal={addDecimal}/>
+        <Button value={"<"} updateTotal={deleteChar}/>
       </div>
       
-      <div className="flex-container">
-      <Button value={7} updateTotal={updateTotal}/>
-      <Button value={8} updateTotal={updateTotal}/>
-      <Button value={9} updateTotal={updateTotal}/>
-      </div>
-      
-      <div className="flex-container">
-      <Button value={0} updateTotal={updateTotal}/>
-      <Button value={"."} updateTotal={addDecimal}/>
-      <Button value={"<"} updateTotal={deleteChar}/>
-      </div>
-      
-      <button className="control-button" onClick={createTransaction}>Add</button>
 
-      <button className="control-button" onClick={clearTransaction}>Clear</button>
-  
+{/*   
       <p>food: {categories.food.toString()}</p>
       <p>transport: {categories.transport.toString()}</p>
       <p>entertainment: {categories.entertainment.toString()}</p>
@@ -120,7 +119,7 @@ export default function CreateTransaction() {
       <p>drinks: {categories.drinks.toString()}</p>
       <p>holiday: {categories.holiday.toString()}</p>
       <p>gift: {categories.gift.toString()}</p>
-      <p>total: {total}</p>
+      <p>total: {total}</p> */}
       </>
     );
 }
