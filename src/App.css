@@ -1,6 +1,33 @@
+:root {
+    font-family: 'Montserrat', sans-serif;
+    --bg-primary: #242236;
+    --bg-secondary: #6649b8;
+    --text-primary: #ececec;
+    --text-secondary: #b6b6b6;
+    --transition-speed: 600ms;
+}
+
 body{
-    padding: 30px;
-    background-color: #242236;
+    background-color: var(--bg-primary);
+    margin: 0;
+    padding: 0;
+}
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+  
+body::-webkit-scrollbar-track {
+background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+background: var(--bg-secondary);;
+}
+
+main {
+    margin-left: 5rem;
+    padding: 1rem;
 }
 
 p{
@@ -8,7 +35,7 @@ p{
     color:white;
 }
 
-*{
+* {
     font-family: 'Montserrat', sans-serif;
 }
 

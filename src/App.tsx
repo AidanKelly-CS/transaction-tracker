@@ -3,12 +3,41 @@ import logo from './logo.svg';
 import './App.css';
 import CreateTransaction from './create-transaction/CreateTransaction';
 import ViewTransactions from './view-transactions/ViewTransactions';
+import Navbar from './navbar/Navbar';
 
 function App() {
   const transactions = [
     {
       "category":"food",
       "total":"£100"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
+    },
+    {
+      "category":"food",
+      "total":"£1001"
     },
     {
       "category":"food",
@@ -23,8 +52,12 @@ function App() {
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans&display=swap');
     </style> 
-    {/* <CreateTransaction/> */}
+    <Navbar />
+
+    <main>
     <ViewTransactions transactions={transactions}/>
+    {/* <CreateTransaction/> */}
+    </main>
     </>
   );
 }
