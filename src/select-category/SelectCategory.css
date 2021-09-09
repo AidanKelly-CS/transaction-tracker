@@ -1,0 +1,16 @@
+.category-container {
+    display: grid;
+    place-items: center stretch;
+    grid-template-columns: auto auto;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+
+.category-container-selected {
+    background-color: var(--bg-secondary);
+}
+
+

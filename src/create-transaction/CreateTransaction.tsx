@@ -78,10 +78,10 @@ export default function CreateTransaction() {
       <>
 
       <div className="flex-container">
-      <Category icon={faHotdog} color={"white"} main={false} selected={categories.food} onClick={()=>setCategory("food")}/>
-      <Category icon={faRoute} color={"white"} main={false} selected={categories.transport} onClick={()=>setCategory("transport")}/>
-      <Category icon={faGamepad} color={"white"} main={false} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
-      <Category icon={faPlus} color={"white"} main={false} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
+      <Category icon={faHotdog} color={"white"} main={true} selected={categories.food} onClick={()=>setCategory("food")}/>
+      <Category icon={faRoute} color={"white"} main={true} selected={categories.transport} onClick={()=>setCategory("transport")}/>
+      <Category icon={faGamepad} color={"white"} main={true} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
+      <Category icon={faPlus} color={"white"} main={true} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
       </div>
 
       <p className="total">{currency} {total}</p>

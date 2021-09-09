@@ -2,16 +2,11 @@ import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames';
 import './Category.css';
+import { CategoryInterface } from './CategoryInterface';
 
-interface Category{
-    icon: IconDefinition;
-    color:string;
-    main: boolean;
-    onClick: any;
-    selected: boolean;
-}
 
-export default function Category({icon, color, main, selected, onClick}: Category) {
+
+export default function Category({icon, color, main, selected, onClick, label=""}: CategoryInterface) {
     
     let classes = classNames({
         "category":true,
