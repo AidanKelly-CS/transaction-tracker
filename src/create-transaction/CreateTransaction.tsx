@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faPlus, faRoute } from '@fortawesome/free-solid-svg-icons'
 import Category from '../category/Category';
 import './Transaction.css';
+import classNames from 'classnames';
+import SelectCategory from '../select-category/SelectCategory';
+import Modal from '../modal/Modal';
 
 export default function CreateTransaction() {
     const currency = "£";
@@ -73,20 +76,29 @@ export default function CreateTransaction() {
       setCategories(cat);
     }
 
+    const [modalOpen,setModalOpen] = useState(false);
+
+    function addCategory(){
+      setModalOpen(true);
+    }
+
+    function closeModal(){
+      setModalOpen(false);
+    }
   
     return (
       <>
 
+      <Modal open={modalOpen} close={closeModal}>
+        <SelectCategory/>
+      </Modal>
+
       <div className="flex-container">
       <Category icon={faHotdog} color={"white"} main={true} selected={categories.food} onClick={()=>setCategory("food")}/>
-      <Category icon={faRoute} color={"white"} main={true} selected={categories.transport} onClick={()=>setCategory("transport")}/>
-      <Category icon={faGamepad} color={"white"} main={true} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
-      <Category icon={faPlus} color={"white"} main={true} selected={categories.entertainment} onClick={()=>setCategory("entertainment")}/>
+      <Category icon={faPlus} color={"white"} main={true} selected={categories.entertainment} onClick={addCategory}/>
       </div>
 
       <p className="total">{currency} {total}</p>
-
-
 
       <div className="control-button-container">
         <button className="control-button" onClick={createTransaction}>Add</button>
