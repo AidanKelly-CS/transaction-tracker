@@ -7,23 +7,15 @@ import './Transaction.css';
 import classNames from 'classnames';
 import SelectCategory from '../select-category/SelectCategory';
 import Modal from '../../modal/Modal';
+import { CategoryInterface } from '../category/CategoryInterface';
 
 export default function CreateTransaction() {
     const currency = "£";
     const [total, setTotal] = useState("0");
-    const [categories, setCategories] = useState({
-      "food": false,
-      "transport":false,
-      "entertainment":false,
+    const [categories, setCategories] = useState<CategoryInterface[]>([]);
+    const [modalOpen,setModalOpen] = useState(false);
+    const [clearSelectedCategories, setClearSelectedCategories] = useState(false);
 
-      "cinema": false,
-      "car":false,
-      "date":false,
-      "drinks":false,
-      "holiday":false,
-      "gift":false
-    });
-  
     function updateTotal(e){
       let buttonValue = e.target.value;
       
@@ -42,7 +34,6 @@ export default function CreateTransaction() {
       }
     }
   
-  
     function deleteChar(e){
       if(total.length === 1){
         setTotal("0");
@@ -57,26 +48,15 @@ export default function CreateTransaction() {
       console.log(`transaction created with total of £${total}`);
     }
     
-    function setCategory(category){
-      if(category in categories){
-        setCategories({...categories, [category]:!categories[category]});
-      }
-    }
-
     function clearTransaction(){
       setTotal("0");
       clearCategories();
     }
 
     function clearCategories(){
-      const cat = {...categories};
-      Object.keys(cat).forEach(key => {
-        cat[key] = false;
-      });
-      setCategories(cat);
+      setCategories([]);
+      setClearSelectedCategories(true);
     }
-
-    const [modalOpen,setModalOpen] = useState(false);
 
     function addCategory(){
       setModalOpen(true);
@@ -85,17 +65,26 @@ export default function CreateTransaction() {
     function closeModal(){
       setModalOpen(false);
     }
+
+    function setSelectedCategories(selectedCategories: CategoryInterface[]){
+      setCategories(selectedCategories);
+    }
   
     return (
       <>
 
       <Modal open={modalOpen} close={closeModal}>
-        <SelectCategory/>
+        <SelectCategory setSelectedCategories={setSelectedCategories} clear={clearSelectedCategories} resetClearCategories={()=>setClearSelectedCategories(false)}/>
       </Modal>
 
       <div className="flex-container">
-      <Category icon={faHotdog} color={"white"} main={true} selected={categories.food} onClick={()=>setCategory("food")}/>
-      <Category icon={faPlus} color={"white"} main={true} selected={categories.entertainment} onClick={addCategory}/>
+        {
+          categories.map(category => {
+            return <Category icon={category.icon} color={category.color} main={category.main} selected={category.selected} onClick={()=>{}}/>
+          })
+        }
+
+        <Category icon={faPlus} color={"white"} main={true} selected={false} onClick={addCategory}/>
       </div>
 
       <p className="total">{currency} {total}</p>
@@ -120,18 +109,6 @@ export default function CreateTransaction() {
         <Button value={"<"} updateTotal={deleteChar}/>
       </div>
       
-
-{/*   
-      <p>food: {categories.food.toString()}</p>
-      <p>transport: {categories.transport.toString()}</p>
-      <p>entertainment: {categories.entertainment.toString()}</p>
-      <p>cinema: {categories.cinema.toString()}</p>
-      <p>car: {categories.car.toString()}</p>
-      <p>date: {categories.date.toString()}</p>
-      <p>drinks: {categories.drinks.toString()}</p>
-      <p>holiday: {categories.holiday.toString()}</p>
-      <p>gift: {categories.gift.toString()}</p>
-      <p>total: {total}</p> */}
       </>
     );
 }

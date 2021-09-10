@@ -1,24 +1,40 @@
 import { faCar, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faRoute, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Category from '../category/Category';
 import { CategoryInterface } from '../category/CategoryInterface';
 import './SelectCategory.css';
 
 
-export default function SelectCategory() {
+export default function SelectCategory({setSelectedCategories, clear, resetClearCategories}) {
 
-
+    useEffect(() => {
+        if(clear){
+            clearCategories();
+            resetClearCategories();
+        }
+    }, [clear]); 
+    
     function select(label: string){
         const updatedCategories = [...categories];
         updatedCategories.forEach((category, i) => {
-            console.log(category, i);
             if(category.label === label){
                 updatedCategories[i].selected = !category.selected;
             }
         });
 
         setCategories(updatedCategories);
+        setSelectedCategories(updatedCategories.filter(category=>category.selected));
+    }
+
+    function clearCategories(){
+        const updatedCategories = [...categories];
+        updatedCategories.forEach((category, i) => {
+            updatedCategories[i].selected = false;
+        });
+    
+        setCategories(updatedCategories);
+        setSelectedCategories(updatedCategories.filter(category=>category.selected));
     }
     
 
@@ -100,7 +116,10 @@ export default function SelectCategory() {
     );
         
     return (
-            <>
+            <>          
+            <div className="category-clear" onClick={clearCategories}>
+                <p>clear</p>
+            </div>
             {
             categories.map(category => {
                 const classes = classNames({
@@ -108,7 +127,6 @@ export default function SelectCategory() {
                     "category-container-selected": category.selected
                 })
                 return (
-                    
                     <div className={classes} key={category.label} onClick={category.onClick}>
                     <Category {...category}/>
                     <p>{category.label}</p>
