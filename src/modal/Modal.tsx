@@ -26,7 +26,6 @@ export default function Modal(props) {
                 <span className="close" onClick={closeModal}>&times;</span>
                 {props.children}
             </div>
-
         </div>
-    )
+    );
 }
