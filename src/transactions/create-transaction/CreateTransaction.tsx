@@ -6,7 +6,7 @@ import Category from '../category/Category';
 import './Transaction.css';
 import classNames from 'classnames';
 import SelectCategory from '../select-category/SelectCategory';
-import Modal from '../modal/Modal';
+import Modal from '../../modal/Modal';
 
 export default function CreateTransaction() {
     const currency = "£";

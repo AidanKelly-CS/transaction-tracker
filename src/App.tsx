@@ -1,8 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CreateTransaction from './create-transaction/CreateTransaction';
-import ViewTransactions from './view-transactions/ViewTransactions';
+import CreateTransaction from './transactions/create-transaction/CreateTransaction';
+import ViewTransactions from './transactions/view-transactions/ViewTransactions';
+
 import Navbar from './navbar/Navbar';
 
 import {
