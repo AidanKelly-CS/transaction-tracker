@@ -14,44 +14,7 @@ import {
 import Dashboard from './transactions/dashboard/Dashboard';
 
 function App() {
-  const transactions = [
-    {
-      "category":"food",
-      "total":"£100"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    },
-    {
-      "category":"food",
-      "total":"£1001"
-    }
-  ]
+
   return (
     <>
 
@@ -68,7 +31,7 @@ function App() {
       <Switch>
 
         <Route path="/view-transactions">
-          <ViewTransactions transactions={transactions}/>
+          <ViewTransactions/>
         </Route>
 
         <Route path="/dashboard">

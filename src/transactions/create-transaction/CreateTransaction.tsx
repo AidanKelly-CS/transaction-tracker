@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import SelectCategory from '../select-category/SelectCategory';
 import Modal from '../../modal/Modal';
 import { CategoryInterface } from '../category/CategoryInterface';
+import { TransactionInterface } from '../view-transactions/TransactionInterface';
+
 
 export default function CreateTransaction() {
     const currency = "£";
@@ -44,8 +46,25 @@ export default function CreateTransaction() {
     }
   
     function createTransaction(){
-      clearTransaction();
-      console.log(`transaction created with total of £${total}`);
+      const TRANSACTIONS_LOCAL_STORAGE_KEY = "transactions";
+      
+      try { 
+        const transaction = {
+          icon: categories[0].icon,
+          category: categories[0].label,
+          total: total
+        } as TransactionInterface;
+        
+        let savedTransactions = JSON.parse(localStorage.getItem(TRANSACTIONS_LOCAL_STORAGE_KEY)) as TransactionInterface[];
+        savedTransactions = savedTransactions === null ? [] : savedTransactions;
+        savedTransactions.push(transaction);
+        localStorage.setItem(TRANSACTIONS_LOCAL_STORAGE_KEY, JSON.stringify(savedTransactions));
+
+        clearTransaction();
+        console.log(`transaction created with total of £${total}`);
+      }catch {
+        console.log("you must select a category")
+      }
     }
     
     function clearTransaction(){
