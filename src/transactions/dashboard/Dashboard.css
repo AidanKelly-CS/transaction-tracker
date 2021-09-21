@@ -1,0 +1,12 @@
+.chart {
+    padding: 2%;
+    width: 96%;
+    display: inline-block;
+    height: 300px;
+  }
+  
+@media (min-width: 600px) {
+  .chart {
+    width: 40%;
+  }
+}

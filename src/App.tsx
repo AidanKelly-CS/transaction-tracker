@@ -11,6 +11,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Dashboard from './transactions/dashboard/Dashboard';
 
 function App() {
   const transactions = [
@@ -68,6 +69,10 @@ function App() {
 
         <Route path="/view-transactions">
           <ViewTransactions transactions={transactions}/>
+        </Route>
+
+        <Route path="/dashboard">
+          <Dashboard/>
         </Route>
 
         <Route path="/">

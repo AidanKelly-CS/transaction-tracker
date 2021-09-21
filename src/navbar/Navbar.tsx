@@ -31,9 +31,9 @@ export default function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                    <a href="#" className="nav-link">
+                    <a href="/dashboard" className="nav-link">
                         <FontAwesomeIcon className="icon" icon={faChartBar} color={"white"} size={iconSize} />
-                        <span className="link-text">Predictions</span>
+                        <span className="link-text">Dashboard</span>
                     </a>
                 </li>                
             </ul>

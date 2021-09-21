@@ -30,9 +30,15 @@ main {
     padding: 1rem;
 }
 
-p{
+p {
     font-size: 30px;
     color:white;
+}
+
+h3 {
+    font-size: 30px;
+    color:white;
+    text-align: center;
 }
 
 * {
