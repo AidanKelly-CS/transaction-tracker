@@ -108,7 +108,7 @@ export default function Dashboard() {
             />
         </div>
 
-        <h3>Montly Spend Over Time</h3>
+        <h3>Monthly Spend Over Time</h3>
         <div className="chart">
 
             <Line 
