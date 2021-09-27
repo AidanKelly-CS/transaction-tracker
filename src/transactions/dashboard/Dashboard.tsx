@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import {Bar, Doughnut, Line, Pie} from 'react-chartjs-2';
+import { TransactionInterface } from '../view-transactions/TransactionInterface';
+import Category from '../category/Category';
+import { groupCollapsed } from 'console';
 
 export default function Dashboard() {
-    
+
+    const trans = JSON.parse(localStorage.getItem("transactions")) as TransactionInterface[];
+    let groupedTransactions = {"":0};
+    if(trans){
+        delete groupedTransactions[""];
+        trans.forEach(transaction =>{
+          if(groupedTransactions[transaction.category]){
+              groupedTransactions[transaction.category] += parseInt(transaction.total)
+          }else{
+              groupedTransactions[transaction.category] = parseInt(transaction.total);
+          }
+      });
+    };
 
     const data = {
-        labels: ['food', 'transport', 'entertainment', 'cinema', 'car', 'date'],
+        labels: Object.keys(groupedTransactions),
         datasets: [{
             label: 'Total Spent',
-            data: [12, 19, 3, 5, 2, 3],
+            data: Object.values(groupedTransactions),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -28,13 +43,15 @@ export default function Dashboard() {
             ],
             borderWidth: 1
         }]
-    }
+    };
+
+    console.log(data);
 
     const pieData = {
-        labels: ['Food', 'transport', 'entertainment', 'cinema', 'car', 'date'],
+        labels: Object.keys(groupedTransactions),
         datasets: [{
             label: 'Total Spent',
-            data: [12, 19, 3, 5, 2, 3],
+            data: Object.values(groupedTransactions),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
