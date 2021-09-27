@@ -1,7 +1,7 @@
 import Button from './Button';
 import React, {useState,useRef, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faPlus, faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faPlus, faRoute } from '@fortawesome/free-solid-svg-icons'
 import Category from '../category/Category';
 import './Transaction.css';
 import classNames from 'classnames';
@@ -10,13 +10,13 @@ import Modal from '../../modal/Modal';
 import { CategoryInterface } from '../category/CategoryInterface';
 import { TransactionInterface } from '../view-transactions/TransactionInterface';
 
-
 export default function CreateTransaction() {
     const currency = "£";
     const [total, setTotal] = useState("0");
     const [categories, setCategories] = useState<CategoryInterface[]>([]);
     const [modalOpen,setModalOpen] = useState(false);
     const [clearSelectedCategories, setClearSelectedCategories] = useState(false);
+    const [date, changeDate] = useState(new Date());
 
     function updateTotal(e){
       let buttonValue = e.target.value;
@@ -95,6 +95,11 @@ export default function CreateTransaction() {
       <Modal open={modalOpen} close={closeModal}>
         <SelectCategory setSelectedCategories={setSelectedCategories} clear={clearSelectedCategories} resetClearCategories={()=>setClearSelectedCategories(false)}/>
       </Modal>
+
+
+      <div className="calendar">
+        <input type="date" name="date" id="date"></input>
+      </div>
 
       <div className="flex-container">
         {
