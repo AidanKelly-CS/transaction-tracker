@@ -9,6 +9,7 @@ import SelectCategory from '../select-category/SelectCategory';
 import Modal from '../../modal/Modal';
 import { CategoryInterface } from '../category/CategoryInterface';
 import { TransactionInterface } from '../view-transactions/TransactionInterface';
+import moment from 'moment';
 
 export default function CreateTransaction() {
     const currency = "£";
@@ -16,7 +17,8 @@ export default function CreateTransaction() {
     const [categories, setCategories] = useState<CategoryInterface[]>([]);
     const [modalOpen,setModalOpen] = useState(false);
     const [clearSelectedCategories, setClearSelectedCategories] = useState(false);
-    const [date, changeDate] = useState(new Date());
+    // const [date, setDate] = useState( (new Date()).toUTCString());
+    const [date, setDate] = useState( moment().format("YYYY-MM-DD"));
 
     function updateTotal(e){
       let buttonValue = e.target.value;
@@ -65,6 +67,8 @@ export default function CreateTransaction() {
       }catch {
         console.log("you must select a category")
       }
+
+      console.log(date);
     }
     
     function clearTransaction(){
@@ -98,7 +102,7 @@ export default function CreateTransaction() {
 
 
       <div className="calendar">
-        <input type="date" name="date" id="date"></input>
+        <input value={date} onChange={e => setDate(e.target.value)} type="date" name="date" id="date"></input>
       </div>
 
       <div className="flex-container">
