@@ -85,7 +85,7 @@
 }
 
 
-.calendar {
+.input_field {
     font-size: 20px;
 
     /* container */
@@ -107,3 +107,45 @@ input[type=date] {
     color: white;
     width: 100%;
 }
+
+input[type=text] {
+    background-color: transparent;
+
+    /* border: none; */
+    border-color: white;
+
+
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+}
+
+option{
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    
+    /* colors */
+    background-color: #2a284b;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 500px;
+    color:white;
+}
+
+select{
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+
+    /* colors */
+    background-color: #2a284b;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 500px;
+    color:white;
+}
+
+

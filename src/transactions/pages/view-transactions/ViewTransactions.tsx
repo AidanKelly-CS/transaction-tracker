@@ -21,7 +21,7 @@ export default function ViewTransactions() {
         <>
         {
         transactions.map(transaction => {
-            return <Transaction category={transaction.category} total={transaction.total} icon={transaction.icon} />
+            return <Transaction category={transaction.category} total={transaction.total} icon={transaction.icon} store={transaction.store} />
         })
         }
         </>

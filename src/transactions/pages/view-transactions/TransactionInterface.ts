@@ -4,4 +4,5 @@ export interface TransactionInterface{
     icon: IconDefinition;
     category:string;
     total: string;
+    store: string;
 }

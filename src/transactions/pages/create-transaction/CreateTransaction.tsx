@@ -15,10 +15,14 @@ export default function CreateTransaction() {
     const currency = "£";
     const [total, setTotal] = useState("0");
     const [categories, setCategories] = useState<CategoryInterface[]>([]);
-    const [modalOpen,setModalOpen] = useState(false);
+    const [catModalOpen,setCatModalOpen] = useState(false);
+    const [storeModalOpen,setStoreModalOpen] = useState(false);
     const [clearSelectedCategories, setClearSelectedCategories] = useState(false);
-    // const [date, setDate] = useState( (new Date()).toUTCString());
     const [date, setDate] = useState( moment().format("YYYY-MM-DD"));
+    
+    const [store, setStore] = useState("");
+    const [stores, setStores] = useState(["Tesco", "Yo Sushi", "Greggs"]);
+    const [selectedStore, setSelectedStore] = useState(stores[0])
 
     function updateTotal(e){
       let buttonValue = e.target.value;
@@ -48,13 +52,15 @@ export default function CreateTransaction() {
     }
   
     function createTransaction(){
+
       const TRANSACTIONS_LOCAL_STORAGE_KEY = "transactions";
       
       try { 
         const transaction = {
           icon: categories[0].icon,
           category: categories[0].label,
-          total: total
+          total: total,
+          store: selectedStore
         } as TransactionInterface;
         
         let savedTransactions = JSON.parse(localStorage.getItem(TRANSACTIONS_LOCAL_STORAGE_KEY)) as TransactionInterface[];
@@ -67,8 +73,6 @@ export default function CreateTransaction() {
       }catch {
         console.log("you must select a category")
       }
-
-      console.log(date);
     }
     
     function clearTransaction(){
@@ -81,28 +85,72 @@ export default function CreateTransaction() {
       setClearSelectedCategories(true);
     }
 
+    /**category modal functions*/
+
     function addCategory(){
-      setModalOpen(true);
+      setCatModalOpen(true);
     }
 
-    function closeModal(){
-      setModalOpen(false);
+    function closeCatModal(){
+      setCatModalOpen(false);
     }
 
     function setSelectedCategories(selectedCategories: CategoryInterface[]){
       setCategories(selectedCategories);
     }
+
+    /**store modal functions*/
+
+    function addStore(){
+      setStoreModalOpen(true);
+    }
+
+    function closeStoreModal(){
+      setStoreModalOpen(false);
+    }
+
+    function addStoreButton(){
+      let currentStores = [...stores]
+      currentStores.push(store)
+      setStores(currentStores)
+      setStoreModalOpen(false);
+      setStore("")
+      
+    }
+
+
+
   
     return (
       <>
 
-      <Modal open={modalOpen} close={closeModal}>
+      <Modal open={catModalOpen} close={closeCatModal}>
         <SelectCategory setSelectedCategories={setSelectedCategories} clear={clearSelectedCategories} resetClearCategories={()=>setClearSelectedCategories(false)}/>
       </Modal>
 
+      <Modal open={storeModalOpen} close={closeStoreModal}>
+        <input type="text" value={store} onChange={e => setStore(e.target.value)}></input>
+        <button onClick={addStoreButton}>Add</button>
+      </Modal>
 
-      <div className="calendar">
+
+      <div className="input_field">
         <input value={date} onChange={e => setDate(e.target.value)} type="date" name="date" id="date"></input>
+      </div>
+
+      <div className="input_field">
+        <select value={selectedStore} onChange={e => setSelectedStore(e.target.value)}>
+          {
+            stores.map(s => {
+              return(
+              <option value={s}>{s}</option>
+              )
+            })
+          }
+        
+        </select>
+        <Category icon={faPlus} color={"white"} main={true} selected={false} onClick={addStore}/>
+
       </div>
 
       <div className="flex-container">
@@ -117,10 +165,7 @@ export default function CreateTransaction() {
 
       <p className="total">{currency} {total}</p>
 
-      <div className="control-button-container">
-        <button className="control-button" onClick={createTransaction}>Add</button>
-        <button className="control-button" onClick={clearTransaction}>Clear</button>
-      </div>
+
 
       <div className="grid-container">
         <Button value={1} updateTotal={updateTotal}/>
@@ -135,6 +180,11 @@ export default function CreateTransaction() {
         <Button value={0} updateTotal={updateTotal}/>
         <Button value={"."} updateTotal={addDecimal}/>
         <Button value={"<"} updateTotal={deleteChar}/>
+      </div>
+
+      <div className="control-button-container">
+        <button className="control-button" onClick={clearTransaction}>Clear</button>
+        <button className="control-button" onClick={createTransaction}>Add</button>
       </div>
       
       </>
