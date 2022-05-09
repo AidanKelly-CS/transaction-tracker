@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import {Bar, Doughnut, Line, Pie} from 'react-chartjs-2';
 import { TransactionInterface } from '../view-transactions/TransactionInterface';
-import Category from '../category/Category';
+import Category from '../../category/Category';
 import { groupCollapsed } from 'console';
 
 export default function Dashboard() {

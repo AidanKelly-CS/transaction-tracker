@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CreateTransaction from './transactions/create-transaction/CreateTransaction';
-import ViewTransactions from './transactions/view-transactions/ViewTransactions';
+import CreateTransaction from './transactions/pages/create-transaction/CreateTransaction';
+import ViewTransactions from './transactions/pages/view-transactions/ViewTransactions';
 import 'normalize.css';
 
 import Navbar from './navbar/Navbar';
@@ -12,7 +12,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Dashboard from './transactions/dashboard/Dashboard';
+import Dashboard from './transactions/pages/dashboard/Dashboard';
 
 function App() {
 

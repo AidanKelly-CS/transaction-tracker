@@ -2,12 +2,12 @@ import Button from './Button';
 import React, {useState,useRef, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar, faCar, faCoffee, faFilm, faGamepad, faGift, faGlassMartiniAlt, faHeart, faHotdog, faPlaneDeparture, faPlus, faRoute } from '@fortawesome/free-solid-svg-icons'
-import Category from '../category/Category';
+import Category from '../../category/Category';
 import './Transaction.css';
 import classNames from 'classnames';
-import SelectCategory from '../select-category/SelectCategory';
-import Modal from '../../modal/Modal';
-import { CategoryInterface } from '../category/CategoryInterface';
+import SelectCategory from '../../select-category/SelectCategory';
+import Modal from '../../../modal/Modal';
+import { CategoryInterface } from '../../category/CategoryInterface';
 import { TransactionInterface } from '../view-transactions/TransactionInterface';
 import moment from 'moment';
 
