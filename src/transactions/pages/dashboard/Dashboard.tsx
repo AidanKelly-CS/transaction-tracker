@@ -13,9 +13,9 @@ export default function Dashboard() {
         delete groupedTransactions[""];
         trans.forEach(transaction =>{
           if(groupedTransactions[transaction.category]){
-              groupedTransactions[transaction.category] += parseInt(transaction.total)
+              groupedTransactions[transaction.category] += transaction.total
           }else{
-              groupedTransactions[transaction.category] = parseInt(transaction.total);
+              groupedTransactions[transaction.category] = transaction.total;
           }
       });
     };

@@ -9,7 +9,7 @@ export default function Transaction({category, total, icon, store}:TransactionIn
             <Category icon={icon} color={"orange"} main={true} selected={false} onClick={()=>{}}/>
             {/* <p>{category}</p> */}
             <p>{store}</p>
-            <p className="trans-total">£{parseFloat(total).toFixed(2)}</p>
+            <p className="trans-total">£{Number(total).toFixed(2)}</p>
         </div>
     );
 }

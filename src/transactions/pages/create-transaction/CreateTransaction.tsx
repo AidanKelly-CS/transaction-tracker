@@ -59,7 +59,7 @@ export default function CreateTransaction() {
         const transaction = {
           icon: categories[0].icon,
           category: categories[0].label,
-          total: total,
+          total: parseFloat(total),
           store: selectedStore
         } as TransactionInterface;
         
