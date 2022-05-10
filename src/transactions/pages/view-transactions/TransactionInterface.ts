@@ -5,4 +5,5 @@ export interface TransactionInterface{
     category:string;
     total: number;
     store: string;
+    date: Date;
 }

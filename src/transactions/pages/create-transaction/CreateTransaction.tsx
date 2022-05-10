@@ -60,7 +60,8 @@ export default function CreateTransaction() {
           icon: categories[0].icon,
           category: categories[0].label,
           total: parseFloat(total),
-          store: selectedStore
+          store: selectedStore,
+          date: moment(date, "YYYY-MM-DD").toDate()
         } as TransactionInterface;
         
         let savedTransactions = JSON.parse(localStorage.getItem(TRANSACTIONS_LOCAL_STORAGE_KEY)) as TransactionInterface[];
