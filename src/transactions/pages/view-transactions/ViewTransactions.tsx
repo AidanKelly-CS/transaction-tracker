@@ -17,25 +17,32 @@ export default function ViewTransactions() {
     }, []); 
 
 
+    /*get the saved transactions and filter them to 
+    after the date passed in */
+    function filterTransByDate(date){
+      return getTransactions().filter(t => {
+        if (!t.date){
+          return false;
+        }
+        return moment(t.date.toString()).format("YYYY-MM-DD") >= date
+      })
+    }
+
     /**
      * reset transactions value to all transactions
      */
     function resetTransactions(){
-      const trans = getTransactions();
-      if(trans){
-        setTransactions(trans);
-      }
-      console.log(trans)
+      setTransactions(filterTransByDate(date)) /*filter transactions by default date */
     }
 
     function getTransactions(){
-      return JSON.parse(localStorage.getItem("transactions")) as TransactionInterface[];
+      let trans = JSON.parse(localStorage.getItem("transactions")) as TransactionInterface[];
+      return trans ? trans : []
     }
 
     function filterByKey(key){
-
       let groupedTransactions = {};
-      getTransactions().forEach(t =>{
+      filterTransByDate(date).forEach(t =>{
         if (groupedTransactions[t[key]]){
           groupedTransactions[t[key]].total = Number(groupedTransactions[t[key]].total) +  Number(t.total)
         }else{
@@ -46,28 +53,22 @@ export default function ViewTransactions() {
       setTransactions(Object.values(groupedTransactions))
     }
 
-    function filterByDate(){
-      
-      setTransactions(getTransactions().filter(t => {
-        if (!t.date){
-          return false;
-        }
-        return moment(t.date.toString()).format("YYYY-MM-DD") >= date
-      }
-      ));
-      
-
+    function filterByDate(e){
+      setDate(e); /* set date for showing in form field*/
+      setTransactions(filterTransByDate(e));
     }
+
+
 
     return (
         <>
         <button onClick={() => filterByKey("store")}>Group by Store</button>
         <button onClick={() => filterByKey("category")}>Group by Categories</button>
-        <button onClick={filterByDate}>Filter by Date</button>
+
         <button onClick={resetTransactions}>Show All</button>
         
         <div className="input_field">
-          <input value={date} onChange={e => setDate(e.target.value)} type="date" name="date" id="date"></input>
+          <input value={date} onChange={e => filterByDate(e.target.value)} type="date" name="date" id="date"></input>
         </div>
         {
         transactions.map(transaction => {
